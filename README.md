@@ -1,6 +1,6 @@
 # Bottomless
 
-![Logo](logo.png)
+![Logo](bottomless_logo.png)
 
 [![PyPI](https://img.shields.io/pypi/v/bottomless.svg)][pypi_]
 [![Status](https://img.shields.io/pypi/status/bottomless.svg)][status]
