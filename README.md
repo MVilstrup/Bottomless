@@ -1,5 +1,7 @@
 # Bottomless
 
+![Logo](logo.png)
+
 [![PyPI](https://img.shields.io/pypi/v/bottomless.svg)][pypi_]
 [![Status](https://img.shields.io/pypi/status/bottomless.svg)][status]
 [![Python Version](https://img.shields.io/pypi/pyversions/bottomless)][python version]
