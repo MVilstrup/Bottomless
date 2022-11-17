@@ -1,0 +1,3 @@
+
+class ConfigRequirement:
+    pass

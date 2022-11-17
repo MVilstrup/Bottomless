@@ -1,0 +1,4 @@
+# These are valid module definitions
+app pattern at //funcs.patterns
+app aggregates at //funcs.aggregates
+app email at //emails.email

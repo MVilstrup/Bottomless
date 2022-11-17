@@ -1,0 +1,68 @@
+Prod ------------------------------>
+# This is a TOML document specifying the configuration of the Production evironment
+title = "Production Example"
+
+[owner]
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00
+
+[database]
+enabled = true
+ports = [ 8000, 8001, 8002 ]
+data = [ ["delta", "phi"], [3.14] ]
+temp_targets = { cpu = 79.5, case = 72.0 }
+
+[servers]
+
+[servers.alpha]
+ip = "10.0.0.1"
+port = 80
+----------------------------------
+
+Staging ------------------------------>
+# This is a TOML document specifying the configuration of the Staging evironment
+title = "Development Example"
+
+[owner]
+name = "John Doe"
+dob = 2021-11-27T07:32:00-08:00
+
+[database]
+enabled = true
+ports = [ 8000, 8001, 8002 ]
+data = [ ["delta", "phi"], [3.14] ]
+temp_targets = { cpu = 79.5, case = 72.0 }
+
+[servers]
+
+[servers.alpha]
+ip = "127.0.0.1"
+port = 8000
+----------------------------------
+
+Dev ------------------------------>
+# This is a TOML document specifying the configuration of the Production evironment
+title = "Development Example"
+
+[owner]
+name = "Mikkel Vilstrup"
+dob = 2022-11-27T07:32:00-08:00
+
+[database]
+enabled = true
+ports = [ 8000, 8001, 8002 ]
+data = [ ["delta", "phi"], [3.14] ]
+temp_targets = { cpu = 79.5, case = 72.0 }
+
+[servers]
+
+[servers.alpha]
+ip = "127.0.0.1"
+port = 8888
+----------------------------------
+
+valid empty --->
+# This is another valid case
+---
+
+

@@ -1,0 +1,4 @@
+# These are valid function definitions
+func duration at //funcs/transformers.compute_duration
+func compute_age at //funcs/transformers.compute_age
+func prettify at //funcs/pretty.prettify_time

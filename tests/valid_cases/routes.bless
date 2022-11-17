@@ -1,0 +1,15 @@
+# These are valid route specifications
+route get / is //static/index.html is static!
+route get /login is //static/login.html is static!
+route get /signup is //static/signup.html is static!
+route get /404 is //static/404.html is static!
+
+# Referring to a type with at least one value called ID
+# type Profile:
+#     id: ID
+
+route get with auth.user /api/v2/profile/{Profile.id!} is Profile!
+route get /api/v2/profile/custom/{Profile.id!}
+    with auth.user
+    through //api/profile.customize
+    is part(Profile)!

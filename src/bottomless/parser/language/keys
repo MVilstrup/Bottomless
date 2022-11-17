@@ -1,0 +1,73 @@
+.bless			Bottemless File Extension
+
+# 				Comment
+-> 				Return Indicator
+
+on
+	creation
+	update
+	startup
+	ref
+		update
+		creation
+		attr
+			update
+
+derived
+ref				reference to other entity
+children		reference to foreignkeys
+
+
+time
+now
+cache
+lazy
+
+all
+first
+last
+one
+
+
+
+has
+get
+set
+del
+filter
+
+check
+transform
+rollback
+reaction
+
+before
+after
+
+
+this
+
+
+int				Integer type indicator
+long			Double type indicator
+str				String type indicator
+bool			Boolean type indicator
+ts				Timestamp type indicator
+dt 				datetime type indicator
+null			null indicator
+not null		not null indicator
+dict
+list
+tuple
+set
+any
+|
+&
+
+...
+
+{} 				dictionary
+/()				variable name
+[] 				list
+<>				type
+:				variable indicator

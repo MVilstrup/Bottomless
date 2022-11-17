@@ -1,0 +1,4 @@
+class BottomlessError(Exception):
+    pass
+
+

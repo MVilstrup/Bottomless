@@ -1,0 +1,138 @@
+Prod ------------------------------>
+[environment]
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00
+
+[database]
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00
+
+----------------------------------
+Test ---------------------------->
+[environment]
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00
+
+[database]
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00
+
+---------------------------------
+Dev ---------------------------->
+[environment]
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00
+
+[database]
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00
+
+---------------------------------
+# This is a comment
+"""
+This is a multiline comment
+"""
+
+import //other.bless
+
+func duration is //funcs/transformers.compute_duration
+func compute_age is //funcs/transformers.compute_age
+func prettify is //funcs/pretty.prettify_time
+
+app pattern is //funcs.patterns
+app aggregates is //funcs.aggregates
+app email is //emails.email
+
+route get / is //static/index.html is static!
+route get /login is //static/login.html is login
+route get /signup is //static/signup.html is signup
+route get /404 is //static/404.html is static!
+
+route get with auth.user /api/v2/profile/custom/{Profile.id!} is part(Profile)!:
+    Profile(id: id):
+            name
+            email
+
+socket subscribe with auth.user ...
+socket publish with auth.user ...
+
+pulse every time('05:45') do
+    | companies: fetch.companies with url is list[dict[str, Scalar]]!
+    | do Company.create |< companies # Run create on all the companies end
+
+with auth.user:
+    route get /api/v2/profile/{Profile.id!} is Profile!
+
+mutation createProfile(message: Profile) is success!
+mutation updateProfile(message: part(Profile)) is success!
+
+with auth.user:
+    query getProfile(id: ID!, with_company: Boolean! = False) is compound(part(Profile), part(Company)):
+         Profile(id: id):
+            name
+            email
+
+            Company include(if: with_company) with auth.owner:
+                name
+
+    with auth.owner:
+        mutation updateProfile(message: part(Profile)) is success!
+
+type AgeBin:
+	lower_bar: int!
+	upper_bar: int!
+
+module TimedModel:
+    persisted:
+        updated_at: TimeStamp! = derived on will update with Now
+        created_at: TimeStamp! = derived on will create with Now
+
+module Profile extends TimedModel:
+	persisted:
+		id: ID!
+		name: String!
+		email: Unique Indexed String!
+		email_verified: Boolean! = False
+		birthdate: String!
+		last_updated: TimeStamp! = derived on will update with Now
+		company: ref(Company) is ID
+
+	computed:
+		away_since: this.last_updated through duration is ts!
+		age: this.birthdate through compute_age is int!
+		age_bin:  Profile.state.age_bins, this.age through aggregates.compute_bins is AgeBin!
+		away_since_pretty: this.away_since > prettify is str!
+
+	state:
+		mean_age: Profile.all.age through aggregates.mean is float!
+		age_bins: Profile.all.age through aggregates.bin is [AgeBin,  ...]!
+		advanced:
+                 | some_var:  Profile.all.age through some.func through some.other.func is int!
+				 | other_var:  Profile.all.name > alt.func > alt.func_b is int!
+				 | some_var, other_var through final.func is int!
+
+	actions:
+		on will update this.birthdate check < pattern.birthday_pattern with this.birthdate end
+		on will update this.email check < pattern.email_pattern with this.email end
+		on did update this.email do email.verify_email with this.email end
+	
+
+module Company:
+	persisted:
+		id: ID!
+		name: String!
+		website: String!
+
+	state:
+		num_old_employees: children(Profile).some[age > 30].count on error do log is int!
+
+	actions:
+		on will update this.website check new.website with checks.website_pattern end
+		on did delete this do delete children(Profile) end
+
+
+
+
+
+
+

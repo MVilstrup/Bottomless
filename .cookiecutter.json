@@ -1,0 +1,14 @@
+{
+  "_output_dir": "/Users/mikkelvilstrup/Code/open_source",
+  "_template": "gh:cjolowicz/cookiecutter-hypermodern-python",
+  "author": "Mikkel Vilstrup",
+  "copyright_year": "2022",
+  "development_status": "Development Status :: 1 - Planning",
+  "email": "mikkel@vilstrup.dk",
+  "friendly_name": "Bottomless",
+  "github_user": "mvilstrup",
+  "license": "MIT",
+  "package_name": "bottomless",
+  "project_name": "bottomless",
+  "version": "0.0.0"
+}
